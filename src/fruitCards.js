@@ -7,7 +7,7 @@ import watermelon from "./assets/images/watermelon.png";
 import peach from "./assets/images/peach.png";
 import kiwi from "./assets/images/kiwi.png";
 import mango from "./assets/images/mango.png";
-const fruits = [
+const fruitCards = [
   {
     id: 1,
     name: "apple",
@@ -106,4 +106,4 @@ const fruits = [
   },
 ];
 
-export default fruits;
+export default fruitCards;
