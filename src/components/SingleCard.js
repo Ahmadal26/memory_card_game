@@ -1,17 +1,19 @@
 import React from "react";
-export const SingleCard = (card, handelChoice) => {
+export const SingleCard = ({ card, handelChoice, flipped, disabled }) => {
   const handleClick = () => {
-    handelChoice(card);
+    if (!disabled) {
+      handelChoice(card);
+    }
   };
   return (
     <div className="card">
-      <div>
-        <img className="back" src={card.image1} alt="card back" />
+      <div className={flipped ? "flipped" : ""}>
+        <img className="front" src={card.image2} alt="card front" />
         <img
-          className="front"
-          src={card.image2}
+          className="back"
+          src={card.image1}
           onClick={handleClick}
-          alt="card fornt"
+          alt="card back"
         />
       </div>
     </div>

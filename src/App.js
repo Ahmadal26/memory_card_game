@@ -8,12 +8,14 @@ function App() {
   const [attempt, setAttempt] = useState(0);
   const [firstcard, setFirstcard] = useState(null);
   const [secondcard, setSecondcard] = useState(null);
-
+  const [disabled, setDisabled] = useState(false);
   const shuffleCards = () => {
     const shuffledCards = [...fruitCards, ...fruitCards]
       // shuffle cards (need help)
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
+    setFirstcard(null);
+    setSecondcard(null);
     setCards(shuffledCards);
     setAttempt(0);
   };
@@ -24,31 +26,49 @@ function App() {
   // compare two selected cards
   useEffect(() => {
     if (firstcard && secondcard) {
+      setDisabled(true);
       if (firstcard.name === secondcard.name) {
-        console.log("those card match");
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.name === firstcard.name) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
       } else {
-        console.log("those card don't match");
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [firstcard, secondcard]);
+  console.log(cards);
   // reset choices and increase attempt
   const resetTurn = () => {
     setFirstcard(null);
     setSecondcard(null);
     setAttempt((prevAttempt) => prevAttempt + 1);
+    setDisabled(false);
   };
+  useEffect(() => {
+    shuffleCards();
+  }, []);
 
   return (
     <div className="App">
       <h1>Memory Card Game </h1>
       <button onClick={shuffleCards}>Reset </button>
+      <p> Attempt:{attempt}</p>
       <div className="card-grid">
         {cards.map((card) => (
-          // need help in using fruitCards.id
-          // need help in using fruitCards.images
-          <SingleCard key={card.id} card={card} handelChoice={handelChoice} />
+          <SingleCard
+            key={card.id}
+            card={card}
+            handelChoice={handelChoice}
+            flipped={card === firstcard || card === secondcard || card.matched}
+            disabled={disabled}
+          />
         ))}
       </div>
     </div>

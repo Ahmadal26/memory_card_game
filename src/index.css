@@ -7,59 +7,7 @@ body {
   background: rgb(9, 9, 83);
   color: white;
 }
-.title {
-  font-family: "Rubik Puddles", cursive;
-  color: blue;
-  font-size: 70px;
-  background-color: chartreuse;
-}
-.score-board {
-  background-color: blueviolet;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  /* width: 300px; */
-  height: 300px;
-}
-.score {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* margin-right: 200px; */
-  border-color: black;
-  border-style: solid;
-  border-radius: 30%;
-  width: 300px;
-  height: 300px;
-}
-.restart-button {
-  width: 100px;
-  height: 60px;
-  border-radius: 30%;
-  background-color: aqua;
-  margin-top: 50px;
-}
 
-.score-board p {
-  font-family: "Permanent Marker", cursive;
-}
-
-.container {
-  background-color: rgb(99, 74, 74);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 1000px;
-  height: 1000px;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
 .card {
   display: flex;
   justify-content: center;
